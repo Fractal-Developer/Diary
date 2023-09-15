@@ -1,0 +1,65 @@
+:root {
+  --size: 16px;
+}
+
+.divContainer {
+  /* position: 'relative'; */
+  display: grid;
+  grid-template-columns: auto repeat(4, 16px);
+  column-gap: 5px;
+  /* align-items: center; */
+}
+
+.divContainer > :nth-child(2),
+.divContainer > :nth-child(3),
+.divContainer > :nth-child(4),
+.divContainer > :nth-child(5)
+ {
+  place-self: center;
+}
+
+.trashSolid{
+  fill:  #005025;
+  width: var(--size);
+  height: var(--size);
+  transition: transform 0.3s;
+}
+
+.pen{
+  fill:  #005025;
+  width: var(--size);
+  height: var(--size);
+  /* margin-top: 7px; */
+  transition: transform 0.3s;
+}
+
+.up_arrow {
+  fill:  #005025;
+  width: var(--size);
+  height: var(--size);
+  transition: transform 0.3s;
+}
+
+.trashSolid:hover {
+  transform: scale(1.2);
+  fill: rgb(144, 2, 2);
+  cursor: default;
+} 
+
+.pen:hover {
+  transform: scale(1.2);
+  fill: rgb(4, 149, 233);
+  cursor:default; 
+} 
+
+.up_arrow:hover {
+  transform: scale(1.2);
+  fill: rgb(204, 150, 3);
+  cursor: default; 
+}
+
+.popup {
+  background: darkcyan;
+}
+
+

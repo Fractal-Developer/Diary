@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'">
+  <style>
+    * {
+      margin: 0;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    button {
+      margin: 10px 0px 0 17px;
+    }
+    label {
+      margin: 10px 10px 2px 17px;
+    }
+
+    input {
+      margin-top: 2px;
+    }
+
+    .button {
+      flex-direction: row;
+    }
+  </style>
+</head>
+
+<body>
+  <form onsubmit="passSubmit()">
+    <label>
+      Enter pasword:<input type="password" placeholder="Enter pasword" name="pass">
+    </label>
+    <div class="button">
+      <button type="submit" style="width: 78px;">Submit</button>
+      <button style="width: 78px" onclick="cancel()">Cancel</button>
+    </div>
+    <label>
+      <input type="checkbox" onchange="check()">
+      Without password
+    </label>
+    <label>
+      Enter new pasword:<input type="password" class="pass" minlength="1" required placeholder="Enter new pasword">
+    </label>
+    <label>
+      Reenter new pasword:<input type="password" class="pass" minlength="1" required placeholder="Reenter new pasword">
+    </label>
+  </form>
+  </div>
+</body>
+<script>
+  
+  function passSubmit() {
+    event.preventDefault();
+    window.MessageToMain.passClick([event.target[0].value, event.target[4].value, event.target[5].value, event.target[3].checked])
+  }
+
+  // При нажатии на кнопку exit
+  const cancel = () => window.MessageToMain.cancel();
+  
+  function check() {
+    const input = document.querySelectorAll('input');
+      input[2].disabled = event.target.checked;
+      input[3].disabled = event.target.checked;
+  }
+
+</script>
+
+</html>

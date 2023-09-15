@@ -1,0 +1,83 @@
+@font-face {
+    font-family: disket;
+    src: url(../../../resources/Disket-Mono-Regular.ttf);
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+html {
+    --background-color: rgb(190, 226, 243);
+    --background-color-input: rgb(219, 244, 255);
+    padding: 7px;
+    background-image: url("../../../resources/flowers.jpg");
+    background-size: cover;
+}
+
+legend {
+    margin-left: 10px;
+    border: 1px solid black;
+    background-color: rgb(179, 213, 230);
+    padding: 0 3px;
+    cursor: default;
+}
+
+legend > div {
+    cursor: url(/resources/pen24.cur) 0 24, auto;
+}
+
+
+p {
+    margin-top: 5px;
+}
+
+p:not(:has(br)) {
+    margin-bottom: 5px;
+}
+
+fieldset {
+    padding: 5px;
+    margin-top: 5px;
+    padding-bottom: 0px;
+    margin-bottom: 5px;
+    background-color: var(--background-color);
+    border-color: black;
+    border-width: 1px;
+}
+
+button,
+input,
+select,
+textarea {
+    padding: 4px;
+    border-radius: 5px;
+    background-color: var(--background-color-input);
+    margin: 2px 4px 5px 0;
+    transition: transform 0.3s;
+}
+
+span+input {
+    margin-right: 5px;
+}
+
+button,
+input {
+    border: 1px solid;
+}
+
+button:hover {
+    background: rgb(105, 210, 177);
+    transform: scale(1.03);
+}
+
+.hide {
+    font-family: disket;
+    font-style: normal;
+    font-size: 0.6em;
+    font-weight: lighter;
+}

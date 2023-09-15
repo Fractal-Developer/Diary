@@ -1,0 +1,20 @@
+.dataPickerConteiner {
+    display: flex;
+}
+
+.trashSolid{
+  fill:  #005025;
+  width: 20px;
+  height: 20px;
+  margin-top: 7px;
+  transition: transform 0.3s;
+}
+
+.divTrashSolid{
+margin-left: auto;
+}
+
+.trashSolid:hover {
+  transform: scale(1.2);
+  fill: rgb(144, 2, 2);
+} 

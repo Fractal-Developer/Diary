@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Password</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'">
+  <style>
+    * {
+      margin: 0;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    button {
+      margin: 10px 0px 0 17px;
+    }
+    label {
+      margin: 10px 10px 2px 17px;
+    }
+
+    input {
+      margin-top: 2px;
+    }
+
+    .button {
+      flex-direction: row;
+    }
+  </style>
+</head>
+
+<body>
+  <form onsubmit="passSubmit()">
+    <label>
+      Enter pasword:<input type="password" placeholder="Enter pasword" name="pass">
+    </label>
+    <div class="button">
+      <button type="submit" style="width: 78px;">Submit</button>
+      <button style="width: 78px" onclick="exit()">Exit</button>
+    </div>
+  </form>
+  </div>
+</body>
+<script>
+  
+  // Отправка формы, а именно значения input
+  function passSubmit() {
+    event.preventDefault();
+    window.MessageToMain.passClick(event.target[0].value)
+  }
+
+  // При нажатии на кнопку exit
+  const exit = () => window.MessageToMain.exit();
+  
+</script>
+
+</html>
