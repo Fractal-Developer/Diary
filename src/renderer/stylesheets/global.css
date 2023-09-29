@@ -57,12 +57,12 @@ textarea {
     padding: 4px;
     border-radius: 5px;
     background-color: var(--background-color-input);
-    margin: 2px 4px 5px 0;
+    margin: 4px 0 5px 0;
     transition: transform 0.3s;
 }
 
 span+input {
-    margin-right: 5px;
+    /* margin-right: 5px; */
 }
 
 button,

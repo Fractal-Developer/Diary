@@ -11,9 +11,9 @@ import { Down_arrow } from '../../images/down-arrow';
 import style from '../../stylesheets/accountManagment.module.css'
 import 'reactjs-popup/dist/index.css';
 
-function j(e) {
+/* function j(e) {
     return JSON.stringify(e, null, 2)
-}
+} */
 
 export default function AccountManagement({ data: { template, data, langAM } }) {
     // Ссылка на ввод названия поля (используется для очистки инпута)
@@ -178,14 +178,36 @@ export default function AccountManagement({ data: { template, data, langAM } }) 
         }
     }
 
+    // Выполняет вставку элемента массива в указанное место, всё остальное сдвигается
+    const moving = (arr, indexSource, indexDestination, arrLength = arr.length) => {
+        try {
+            if (!arr || !arr.length || indexSource < 0 || indexDestination < 0 || indexDestination >= arrLength || indexSource >= arrLength || arr?.[indexSource] === undefined && arr?.[indexDestination] === undefined) {
+                return true
+            }
+            if (indexSource > indexDestination) {
+                let del = arr.splice(indexSource, 1);
+                del = del.length === 0 ? null : del[0];
+                arr.splice(indexDestination, 0, del)
+                } else {
+                    if (arr.length < indexDestination + 1) arr.length = indexDestination + 1;
+                    arr.splice(indexDestination + 1, 0, arr[indexSource]);
+                    arr.splice(indexSource, 1);
+                }
+            return true
+        } catch (error) {
+            console.error(error)
+            return false;
+        }
+    }
+
     // Перетягивание полей
     function handleonDragEnd(e) {
         const { source: { index: indexSource }, destination: { index: indexDestination } } = e;
-        rotate(accountManagement, indexSource, indexDestination);
+        moving(accountManagement, indexSource, indexDestination);
         setAccountManagement([...accountManagement]);
         for (const i in data) {
             // Ротируем. i - ключи-даты. data[i] - значения-массивы данных.
-            rotate(data[i], indexSource, indexDestination, accountManagement.length);
+            moving(data[i], indexSource, indexDestination, accountManagement.length);
         };
         saveAccountManagement();
         saveDataAccaunting();
@@ -281,11 +303,6 @@ export default function AccountManagement({ data: { template, data, langAM } }) 
         setAddOption({ ...addOption });
     }
 
-    // Окончание корректировки названия группы в готовом поле
-    function setOptionNameInFieldEnd() {
-
-    }
-
     // Передвинуть элемент вверх в поле
     const upOptionInField = (index, ind, i) => () => {
         // Сначала ротируем в шаблоне, длинну массива не нужно передавать
@@ -328,7 +345,7 @@ export default function AccountManagement({ data: { template, data, langAM } }) 
                 <option value='Ro'>Radio</option>
                 <option value='St'>Select</option>
             </select>
-            <button onClick={addSelectedOption} disabled={addSelectedOptionButton.current}>{langAM.addSelectedOption}</button>
+            <button onClick={addSelectedOption} disabled={addSelectedOptionButton.current} className={style.addSelectedOption}>{langAM.addSelectedOption}</button>
             {/* Пользовательский компонент для настройки текущей опции */}
             <OptionProperties dispach={dispach} state={state} langAM={langAM} />
 

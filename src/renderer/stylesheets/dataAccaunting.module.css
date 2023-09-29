@@ -1,20 +1,59 @@
-.dataPickerConteiner {
+.dataPickerConteinerFix {
     display: flex;
+    position: fixed;
+    top: 7px;
 }
 
-.trashSolid{
-  fill:  #005025;
+.dataPickerConteinerStatic {
+  display: flex;
+  position: static;
+}
+
+img {
+  margin-top: 5px;
+}
+
+.conteinerDataFixMin {
+ --top: 33px; /* Отступ сверху */
+ margin-top: var(--top);
+ overflow: auto;
+ position: static;
+ height: calc(100vh - var(--top));
+}
+
+.conteinerDataFixMax {
+  --top: 253px; /* Отступ сверху */
+  margin-top: var(--top);
+  overflow: auto;
+  position: static;
+  height: calc(100vh - var(--top));
+}
+.conteinerDataStatic {
+ position: static;
+}
+
+.dashbord {
+  display: block;
+  background-color: #f0f0f0;
+  border: 1px solid #aeaeae;
+  margin: 0 5px 5px 5px;
+  border-radius: 10px;
+  width: 28px;
+  
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; Горизонтальное выравнивание по центру */
+  align-items: center;
+}
+
+.icon {
   width: 20px;
   height: 20px;
-  margin-top: 7px;
+  margin-top: 30px;
   transition: transform 0.3s;
 }
 
-.divTrashSolid{
-margin-left: auto;
+.icon:hover {
+  transform: scale(1.2);
 }
 
-.trashSolid:hover {
-  transform: scale(1.2);
-  fill: rgb(144, 2, 2);
-} 

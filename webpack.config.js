@@ -1,10 +1,12 @@
 
 // mode: 'development',
 // devtool: 'inline-source-map',
+// mode: 'production',
+// devtool: 'source-map',
 module.exports = {
   renderer: {
-    mode: 'production',
-    devtool: 'source-map',
+    mode: 'development',
+    devtool: 'inline-source-map',
     entry: './src/renderer/javascripts/index.js',
     module: {
       rules: [
@@ -21,6 +23,19 @@ module.exports = {
             }
           }
         },
+        {
+          test: /\.(png|svg)$/i,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+                // outputPath: 'src/renderer/assets/',
+                // publicPath: 'images/',
+              }
+            }
+          ]
+        }
       ]
     }
   },
