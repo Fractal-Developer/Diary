@@ -61,9 +61,6 @@ textarea {
     transition: transform 0.3s;
 }
 
-span+input {
-    /* margin-right: 5px; */
-}
 
 button,
 input {
