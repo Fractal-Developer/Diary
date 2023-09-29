@@ -5,8 +5,8 @@
 // devtool: 'source-map',
 module.exports = {
   renderer: {
-    mode: 'development',
-    devtool: 'inline-source-map',
+    mode: 'production',
+    devtool: 'source-map',
     entry: './src/renderer/javascripts/index.js',
     module: {
       rules: [
