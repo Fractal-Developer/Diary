@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export const SwitchElemData = ({ elem, index, index_: index_2='', valueExtraction, setValueElem, langAM}) => {
+export const SwitchElemData = ({ elem, index, index_: index_2='', valueExtraction, setValueElem, reciveArrNumberFun, langAM}) => {
+    const [arrNumber, setArrNumber] = useState([]);
+    const keyDown = (e) => e.key==='Enter' && (e.target.blur(), console.log('+++'));
     switch (elem.type) {
 
         case 'Ta':
             return <>
                 <p>{elem.label && <span>{elem.label}: </span>}</p>
-                <textarea value={valueExtraction} onChange={setValueElem} style={{ whiteSpace: 'pre-wrap', height: elem.rows, width: elem.cols, maxWidth: "1490px", minWidth: "200px" }}></textarea>
+                <textarea value={valueExtraction} onKeyDown={keyDown} onChange={setValueElem} style={{ whiteSpace: 'pre-wrap', height: elem.rows, width: elem.cols, maxWidth: "1490px", minWidth: "200px" }}></textarea>
                 <br/>
             </>
 
@@ -20,7 +22,7 @@ export const SwitchElemData = ({ elem, index, index_: index_2='', valueExtractio
         case 'Te':
             return <>
                 <label>{elem.label && <span>{elem.label}: </span>}
-                <input type='time' value={valueExtraction} onChange={setValueElem} />
+                <input type='time' value={valueExtraction} onKeyDown={keyDown} onChange={setValueElem} />
                 </label>
                 <br/>
             </>
@@ -29,7 +31,12 @@ export const SwitchElemData = ({ elem, index, index_: index_2='', valueExtractio
             return <>
                 {elem.label && <span>{elem.label}: </span>}
                 <span>{elem.minNumber} </span>
-                <input type='number' value={valueExtraction} onChange={setValueElem} min={elem.minNumber} max={elem.maxNumber} step={elem.stepNumber} />
+                <input type='number' list='list' onKeyDown={keyDown} onFocus={() => setArrNumber(reciveArrNumberFun())} value={valueExtraction} onChange={setValueElem} min={elem.minNumber} max={elem.maxNumber} step={elem.stepNumber} />
+                <datalist id='list'>
+                    {arrNumber.map((e, eindex) => (
+                        <option key={eindex} value={e}/>
+                    ))}
+                </datalist>
                 <span>{elem.maxNumber}</span>
                 <p>{langAM.switchElemStep}: {elem.stepNumber} {langAM.switchElemMin}: {elem.minNumber} {langAM.switchElemMax}: {elem.maxNumber}</p>
             </>
@@ -37,7 +44,7 @@ export const SwitchElemData = ({ elem, index, index_: index_2='', valueExtractio
         case 'It':
             return <>
                 <label>{elem.label && <span>{elem.label}: </span>}
-                <input type='input' value={valueExtraction} onChange={setValueElem} />
+                <input type='input' value={valueExtraction} onChange={setValueElem} onKeyDown={keyDown}/>
                 </label>
                 <br/>
             </>
@@ -48,7 +55,7 @@ export const SwitchElemData = ({ elem, index, index_: index_2='', valueExtractio
                 {elem.arr.map((el, ind) => {
                   return <div key={ind}>
                     {/* input type='radio' объединяется через name */}
-                    <input type='radio' name={`radio${index}${index_2}`} value={ind} checked={valueExtraction !== undefined ? valueExtraction === `${ind}` : undefined} onChange={setValueElem} />
+                    <input type='radio' name={`radio${index}${index_2}`} value={ind} onKeyDown={keyDown} checked={valueExtraction !== undefined ? valueExtraction === `${ind}` : undefined} onChange={setValueElem} />
                     <label>{el}</label>
                   </div>
                 })}
@@ -66,7 +73,7 @@ export const SwitchElemData = ({ elem, index, index_: index_2='', valueExtractio
         case 'St':
             return <>
                 <p>{elem.label && <span>{elem.label}: </span>}</p>
-                <select value={valueExtraction} onChange={setValueElem}>
+                <select value={valueExtraction} onKeyDown={keyDown} onChange={setValueElem}>
                     <option>---</option>
                     {elem.arr.map((el, ind) => {
                         return <option key={ind}>{el}</option>

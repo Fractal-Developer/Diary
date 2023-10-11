@@ -95,7 +95,7 @@ const createWindow = () => {
     }
   })
   win.loadFile('renderer/index.html');
-  // win.webContents.openDevTools({ mode: 'detach' })
+  win.webContents.openDevTools({ mode: 'detach' })
   // win.webContents.openDevTools();
 
   // Отсылаем сообщение о загрузке (старт процесса)
