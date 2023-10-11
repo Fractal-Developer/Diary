@@ -123,7 +123,7 @@ export default function DataAccaunting({ data: { data, template, langAM } }) {
     setPosition(!position);
   }
 
-  function reciveArrNumberFun(index, ind, i) {
+  const reciveArrNumberFun = (index, ind, i) => {
     const arrNumber = [];
     Object.keys(value).forEach((e) => {
       const elem = value[e]?.[index]?.[ind]?.[i];
@@ -187,7 +187,7 @@ export default function DataAccaunting({ data: { data, template, langAM } }) {
                 {group.legendOpt.map((option, i, curArr) => { //Обход по массиву legendOpt
                   return <div key={i}>
                     {i > 0 && curArr.length > i && curArr?.[i]?.hide === false && curArr.some((e, ix) => (e.hide === false && ix < i)) && <hr />}
-                    {!option.hide && <SwitchElemData langAM={langAM} elem={option} index={i} index_={ind} reciveArrNumberFun={() => reciveArrNumberFun(index, ind, i)} valueExtraction={valueExtraction(index, ind, i)} setValueElem={setValueElem(index, ind, i, option.type)} />}
+                    {!option.hide && <SwitchElemData langAM={langAM} elem={option} index={i} index_={ind} reciveArrNumberFun={()=>reciveArrNumberFun(index, ind, i)} valueExtraction={valueExtraction(index, ind, i)} setValueElem={setValueElem(index, ind, i, option.type)} />}
                   </div>
                 })}
               </fieldset>
@@ -195,7 +195,7 @@ export default function DataAccaunting({ data: { data, template, langAM } }) {
               return group.legendOpt.map((option, i, curArr) => { //Обход по массиву legendOpt
                 return <div key={i}>
                   {i > 0 && curArr.length > i && curArr?.[i]?.hide === false && curArr.some((e, ix) => (e.hide === false && ix < i)) && <hr />}
-                  {!option.hide && <SwitchElemData langAM={langAM} elem={option} index={i} index_={ind} valueExtraction={valueExtraction(index, ind, i)} setValueElem={setValueElem(index, ind, i, option.type)} />}
+                  {!option.hide && <SwitchElemData langAM={langAM} elem={option} index={i} index_={ind} reciveArrNumberFun={()=>reciveArrNumberFun(index, ind, i)} valueExtraction={valueExtraction(index, ind, i)} setValueElem={setValueElem(index, ind, i, option.type)} />}
                 </div>
               })
             }

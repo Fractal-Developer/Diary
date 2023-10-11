@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 
 export const SwitchElemData = ({ elem, index, index_: index_2='', valueExtraction, setValueElem, reciveArrNumberFun, langAM}) => {
     const [arrNumber, setArrNumber] = useState([]);
-    const keyDown = (e) => e.key==='Enter' && (e.target.blur(), console.log('+++'));
+    const keyDown = (e) => e.key==='Enter' && e.target.blur();
     switch (elem.type) {
 
         case 'Ta':
             return <>
                 <p>{elem.label && <span>{elem.label}: </span>}</p>
-                <textarea value={valueExtraction} onKeyDown={keyDown} onChange={setValueElem} style={{ whiteSpace: 'pre-wrap', height: elem.rows, width: elem.cols, maxWidth: "1490px", minWidth: "200px" }}></textarea>
+                <textarea value={valueExtraction} onChange={setValueElem} style={{ whiteSpace: 'pre-wrap', height: elem.rows, width: elem.cols, maxWidth: "1490px", minWidth: "200px" }}></textarea>
                 <br/>
             </>
 
@@ -31,11 +31,9 @@ export const SwitchElemData = ({ elem, index, index_: index_2='', valueExtractio
             return <>
                 {elem.label && <span>{elem.label}: </span>}
                 <span>{elem.minNumber} </span>
-                <input type='number' list='list' onKeyDown={keyDown} onFocus={() => setArrNumber(reciveArrNumberFun())} value={valueExtraction} onChange={setValueElem} min={elem.minNumber} max={elem.maxNumber} step={elem.stepNumber} />
-                <datalist id='list'>
-                    {arrNumber.map((e, eindex) => (
-                        <option key={eindex} value={e}/>
-                    ))}
+                <input type='number' list={`list${index}${index_2}`} onKeyDown={keyDown} onFocus={()=>setArrNumber(reciveArrNumberFun())} value={valueExtraction} onChange={setValueElem} min={elem.minNumber} max={elem.maxNumber} step={elem.stepNumber} />
+                <datalist id={`list${index}${index_2}`}>
+                    {arrNumber.map((e, eindex) => <option key={eindex} value={e}/>)}
                 </datalist>
                 <span>{elem.maxNumber}</span>
                 <p>{langAM.switchElemStep}: {elem.stepNumber} {langAM.switchElemMin}: {elem.minNumber} {langAM.switchElemMax}: {elem.maxNumber}</p>

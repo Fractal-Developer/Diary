@@ -22,7 +22,7 @@ img {
 }
 
 .conteinerDataFixMax {
-  --top: 253px; /* Отступ сверху */
+  --top: 280px; /* Отступ сверху */
   margin-top: var(--top);
   overflow: auto;
   position: static;
